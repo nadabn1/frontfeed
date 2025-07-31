@@ -12,31 +12,30 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  email = '';
-  password = '';
-  error = '';
-  // title = 'Connexion'; // Décommente cette ligne si tu utilises {{ title }}
+  email: string = '';
+  password: string = '';
+  error: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
-onSubmit(): void {
-  this.authService.login(this.email, this.password).subscribe({
-    next: (response: { token: string; role: string }) => {
-      localStorage.setItem('token', response.token);
 
-      if (response.role === 'ADMIN') {
-        this.router.navigate(['/admin']);
-      } else {
-        this.router.navigate(['/']);
+  onSubmit(): void {
+    this.authService.login(this.email, this.password).subscribe({
+      next: (response: { token: string; role: string }) => {
+        localStorage.setItem('token', response.token);
+
+        if (response.role === 'ADMIN') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/']);
+        }
+      },
+      error: () => {
+        this.error = 'Email ou mot de passe incorrect';
       }
-    },
-    error: () => {
-      this.error = 'Email ou mot de passe incorrect';
-    }
-  });
-}
+    });
+  }
 
-  goToRegister() {
-  this.router.navigate(['/register']);
-}
-
+  goToRegister(): void {
+    this.router.navigate(['/register']);
+  }
 }

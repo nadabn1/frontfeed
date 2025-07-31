@@ -7,18 +7,25 @@ export interface LoginResponse {
   role: string; 
 }
 
+export interface RegisterUser {
+  name: string;
+  surname: string;
+  email: string;
+  password: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/auth/login';
+  private loginUrl = 'http://localhost:8080/auth/login';
+  private registerUrl = 'http://localhost:8080/users';
 
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(this.apiUrl, { email, password });
+    return this.http.post<LoginResponse>(this.loginUrl, { email, password });
   }
-  register(user: any) {
-  return this.http.post('http://localhost:8080/users', user);
-}
 
+  register(user: RegisterUser): Observable<any> {
+    return this.http.post(this.registerUrl, user);
+  }
 }
