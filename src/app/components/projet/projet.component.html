@@ -1,0 +1,40 @@
+<div class="projet-container">
+  <div class="header">
+    <h2>Projects</h2>
+    <p>Manage all your development projects</p>
+    <button class="add-btn" (click)="toggleForm()">+ New Project</button>
+  </div>
+
+  <div *ngIf="showForm" class="modal">
+    <div class="modal-content">
+      <h3>Create New Project</h3>
+
+      <label>Project Name</label>
+      <input [(ngModel)]="projet.name" placeholder="Enter project name" />
+
+      <label>Description</label>
+      <textarea [(ngModel)]="projet.description" placeholder="Project description"></textarea>
+
+      <label>Project Type</label>
+      <select [(ngModel)]="projet.type">
+        <option>Web Application</option>
+        <option>Mobile Application</option>
+        <option>API</option>
+        <option>Other</option>
+      </select>
+
+      <div class="modal-actions">
+        <button class="cancel" (click)="toggleForm()">Cancel</button>
+        <button class="submit" (click)="createProjet()">Create Project</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-list">
+    <div *ngFor="let p of projets" class="projet-card">
+      <strong>{{ p.name }}</strong><br />
+      <small>{{ p.description }}</small><br />
+      <em>{{ p.type }}</em>
+    </div>
+  </div>
+</div>

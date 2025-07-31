@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 
 export interface LoginResponse {
   token: string;
+  role: string; 
 }
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -15,4 +17,8 @@ export class AuthService {
   login(email: string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.apiUrl, { email, password });
   }
+  register(user: any) {
+  return this.http.post('http://localhost:8080/users', user);
+}
+
 }

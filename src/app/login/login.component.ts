@@ -18,16 +18,25 @@ export class LoginComponent {
   // title = 'Connexion'; // Décommente cette ligne si tu utilises {{ title }}
 
   constructor(private authService: AuthService, private router: Router) {}
+onSubmit(): void {
+  this.authService.login(this.email, this.password).subscribe({
+    next: (response: { token: string; role: string }) => {
+      localStorage.setItem('token', response.token);
 
-  onSubmit(): void {
-    this.authService.login(this.email, this.password).subscribe({
-      next: (response: { token: string }) => {
-        localStorage.setItem('token', response.token);
+      if (response.role === 'ADMIN') {
+        this.router.navigate(['/admin']);
+      } else {
         this.router.navigate(['/']);
-      },
-      error: () => {
-        this.error = 'Email ou mot de passe incorrect';
       }
-    });
-  }
+    },
+    error: () => {
+      this.error = 'Email ou mot de passe incorrect';
+    }
+  });
+}
+
+  goToRegister() {
+  this.router.navigate(['/register']);
+}
+
 }
