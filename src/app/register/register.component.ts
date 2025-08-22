@@ -2,18 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, RegisterUser } from '../services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './register.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./register.component.css'] // ou auth.css si partagé
-})
-export class RegisterComponent {
-  user = { email: '', password: '', role: '' };
-=======
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
@@ -22,29 +17,10 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
->>>>>>> ca9a7c41097eda0f8ceda78b09bd752dcb0df9ba
   error: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
-<<<<<<< HEAD
-  onSubmit() {
-    this.error = '';
-    this.authService.register(this.user).subscribe({
-      next: () => {
-        this.router.navigate(['/']);
-      },
-      error: () => {
-        this.error = "Une erreur est survenue lors de l'inscription.";
-      }
-    });
-  }
-
-  goToLogin() {
-    this.router.navigate(['/login']);
-  }
-}
-=======
   onRegister(): void {
     if (this.password !== this.confirmPassword) {
       this.error = 'Les mots de passe ne correspondent pas.';
@@ -69,5 +45,8 @@ export class RegisterComponent {
       }
     });
   }
+
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
 }
->>>>>>> ca9a7c41097eda0f8ceda78b09bd752dcb0df9ba
