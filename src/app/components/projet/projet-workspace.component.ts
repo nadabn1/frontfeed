@@ -7,6 +7,7 @@ import { ProjetService } from '../../services/projet.service';
 
 import { BacklogComponent } from '../backlog/backlog/backlog.component';
 
+
 @Component({
   selector: 'app-projet-workspace',
   standalone: true,
