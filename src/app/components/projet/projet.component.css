@@ -1,81 +1,81 @@
-.projet-container {
-  padding: 1rem;
-  font-family: 'Segoe UI', sans-serif;
+.project-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  padding: 8px;
+  border-radius: 6px;
 }
 
-.add-btn {
-  background-color: #0052cc;
-  color: white;
-  padding: 0.5rem 1rem;
+.project-item:hover {
+  background-color: #f3f4f6;
+}
+
+.project-item.active {
+  background: #ede9fe;
+}
+
+.project-item .x {
+  background: transparent;
   border: none;
-  margin: 1rem 0;
   cursor: pointer;
-  border-radius: 5px;
+  color: #ef4444;
+  font-size: 16px;
+  padding: 4px;
+}
+
+.af-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  display: grid;
+  place-items: center;
+  z-index: 999;
+}
+
+.af-modal-content {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.af-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.af-btn {
+  background-color: #7c3aed;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.af-btn:hover {
+  background-color: #6d28d9;
+}
+
+.af-btn.cancel {
+  background: #f3f4f6;
+  color: #111827;
 }
 
 .project-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.projet-card {
-  border: 1px solid #ddd;
-  background-color: #ffffff;
-  padding: 1rem;
-  border-radius: 5px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-}
-
-.modal {
-  background: rgba(0,0,0,0.5);
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  width: 400px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-.modal-content input,
-.modal-content textarea,
-.modal-content select {
-  width: 100%;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-}
-
-.cancel {
-  background: white;
-  color: black;
-  border: 1px solid #ccc;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.submit {
-  background: #0052cc;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
+  gap: 4px;
+  max-height: 400px;
+  overflow-y: auto;
 }

@@ -1,54 +1,42 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-projet',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './projet.component.html',
   styleUrls: ['./projet.component.css']
 })
-export class ProjetComponent implements OnInit {
-  projets: any[] = [];
-  projet = {
-    name: '',
-    description: '',
-    type: 'Web Application'
-  };
+export class ProjetComponent {
+  @Input() projets: any[] = [];
+  @Output() projetCreated = new EventEmitter<any>();
+  @Output() projetDeleted = new EventEmitter<number>();
+
   showForm = false;
+  form: any = { nom: '', description: '', type: 'Web Application' };
 
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router) {}
 
-  ngOnInit() {
-    this.getAllProjets();
+  trackById = (_: number, p: any) => p?.id ?? _;
+
+  toggleForm() { this.showForm = !this.showForm; }
+
+  createProjet() {
+    if (!this.form.nom) return;
+    this.projetCreated.emit({ ...this.form, name: this.form.nom });
+    this.form = { nom: '', description: '', type: 'Web Application' };
+    this.showForm = false;
   }
 
-  toggleForm() {
-    this.showForm = !this.showForm;
+  onDeleteClick(id: number, e: Event) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (confirm('Supprimer ce projet ?')) this.projetDeleted.emit(id);
   }
 
-  getAllProjets() {
-    this.http.get<any[]>('http://localhost:8080/admin/projets')
-      .subscribe(data => this.projets = data);
-  }
-createProjet() {
-  console.log('Sending:', this.projet); // debug ici
-
-  this.http.post('http://localhost:8080/admin/projets', this.projet)
-    .subscribe({
-      next: () => {
-        alert("Projet créé avec succès !");
-        this.getAllProjets();
-        this.projet = { name: '', description: '', type: 'Web Application' };
-        this.showForm = false;
-      },
-      error: (err) => {
-        console.error(err); // ajoute ça
-        alert("Erreur lors de l’enregistrement du projet.");
-      }
-    });
-}
-
+  
 }

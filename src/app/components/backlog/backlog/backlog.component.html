@@ -1,0 +1,78 @@
+<div class="blk">
+  <div class="blk-head">
+    <div class="left">
+      <input type="checkbox" />
+      <span class="title">Backlog</span>
+      <span class="muted">({{ counters.all }} ticket{{ counters.all > 1 ? 's' : '' }})</span>
+    </div>
+
+    <div class="right">
+      <span class="badge grey">{{ counters.notStarted }}</span>
+      <span class="badge blue">{{ counters.inProgress }}</span>
+      <span class="badge green">{{ counters.done }}</span>
+
+      <button class="btn ghost" (click)="toggleNewSprint()" [disabled]="!backlog">
+        Créer un sprint
+      </button>
+    </div>
+  </div>
+
+  <div class="blk-body">
+    <!-- état vide -->
+    <div class="empty" *ngIf="sprints.length === 0">
+      <div class="box-dashed">Votre backlog est vide.</div>
+      <button class="link" (click)="backlog ? toggleNewSprint() : createBacklog()">
+        + Créer
+      </button>
+    </div>
+
+    <!-- formulaire nouveau sprint -->
+    <div class="new-sprint" *ngIf="showNewSprint">
+      <input [(ngModel)]="sprintForm.name" name="name" placeholder="Nom du sprint" />
+      <div class="dates">
+        <input [(ngModel)]="sprintForm.startDate" name="start" type="date" />
+        <input [(ngModel)]="sprintForm.endDate"   name="end"   type="date" />
+        <select [(ngModel)]="sprintForm.statut" name="statut">
+          <option value="NOT_STARTED">Non démarré</option>
+          <option value="IN_PROGRESS">En cours</option>
+          <option value="COMPLETED">Terminé</option>
+          <option value="CANCELLED">Annulé</option>
+        </select>
+      </div>
+      <div class="actions">
+        <button class="btn primary" (click)="addSprint()">Ajouter</button>
+        <button class="btn ghost" (click)="toggleNewSprint()">Annuler</button>
+      </div>
+    </div>
+
+    <!-- liste des sprints -->
+    <div class="sprints" *ngIf="sprints.length > 0">
+      <div class="sprint" *ngFor="let s of sprints; trackBy: trackById">
+        <div class="row">
+          <div class="name">
+            <strong>{{ s.name }}</strong>
+            <span class="chip" [ngClass]="{
+              'ns': s.statut === 'NOT_STARTED',
+              'ip': s.statut === 'IN_PROGRESS',
+              'ok': s.statut === 'COMPLETED',
+              'ko': s.statut === 'CANCELLED'
+            }">{{ s.statut }}</span>
+          </div>
+          <div class="meta">
+            <span *ngIf="s.startDate">Du {{ s.startDate }}</span>
+            <span *ngIf="s.endDate"> au {{ s.endDate }}</span>
+            <button class="btn danger" (click)="deleteSprint(s.id)">Supprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="err" *ngIf="error">{{ error }}</div>
+  </div>
+
+  <div class="blk-foot" *ngIf="!backlog">
+    <button class="btn primary" (click)="createBacklog()" [disabled]="creatingBacklog">
+      {{ creatingBacklog ? 'Création…' : 'Créer le backlog pour ce projet' }}
+    </button>
+  </div>
+</div>

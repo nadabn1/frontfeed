@@ -1,23 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { ProjetService } from './projet.service';
+import { Router } from '@angular/router';
 
-import { ProjetComponent } from './projet.component';
+@Component({
+  selector: 'app-projet',
+  templateUrl: './projet.component.html',
+  styleUrls: ['./projet.component.css']
+})
+export class ProjetComponent implements OnInit {
+  projets: any[] = [];
+  constructor(private projetService: ProjetService, private router: Router) {}
 
-describe('ProjetComponent', () => {
-  let component: ProjetComponent;
-  let fixture: ComponentFixture<ProjetComponent>;
+  ngOnInit() {
+    this.projetService.getAll().subscribe((data: any) => this.projets = data);
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ProjetComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(ProjetComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  detailProjet(id: number) {
+    this.router.navigate(['admin', 'projets', id]);
+  }
+}

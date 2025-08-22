@@ -1,0 +1,95 @@
+body {
+  background-color: #f0f4ff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 2em;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.logo {
+  color: #6366f1;
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.subtitle a,
+.forgot {
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #6366f1;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #4f46e5;
+}
+
+.error {
+  color: red;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+hr {
+  margin: 30px 0;
+}
+
+.demo {
+  font-size: 13px;
+  color: #333;
+}

@@ -1,0 +1,32 @@
+<div *ngIf="loading" class="muted">Chargement du projet…</div>
+
+<ng-container *ngIf="!loading">
+  <ng-container *ngIf="projet; else noProject">
+    <div class="af-crumb">
+      <span class="muted">Projects</span> / <strong>{{ projet.nom }}</strong>
+    </div>
+
+    <div class="pw-header">
+      <h2 class="pw-title">{{ projet.nom }}</h2>
+      <div class="pw-tabs">
+        <button class="active">Overview</button>
+        <button>Feedback</button>
+        <button>Settings</button>
+      </div>
+    </div>
+
+    <div class="pw-body">
+      <p><strong>Type :</strong> {{ projet.type || '—' }}</p>
+      <p><strong>Description :</strong> {{ projet.description || '—' }}</p>
+
+      <!-- 🔗 Backlog lié à ce projet -->
+      <app-backlog [projetId]="projet.id"></app-backlog>
+    </div>
+  </ng-container>
+
+  <ng-template #noProject>
+    <div class="kanban-placeholder">
+      <p class="muted">Sélectionnez un projet dans la liste à gauche</p>
+    </div>
+  </ng-template>
+</ng-container>

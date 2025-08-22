@@ -1,0 +1,35 @@
+.blk { margin-top: 16px; background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; }
+.blk-head, .blk-foot { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; background:#f8f9fb; border-bottom:1px solid #e5e7eb; }
+.blk-foot { border-top:1px solid #e5e7eb; border-bottom:none; }
+.left { display:flex; align-items:center; gap:10px; }
+.title { font-weight:600; }
+.right { display:flex; align-items:center; gap:8px; }
+.badge { padding:2px 8px; border-radius:8px; font-size:12px; border:1px solid #e5e7eb; }
+.badge.grey { background:#f3f4f6; }
+.badge.blue { background:#e0e7ff; }
+.badge.green { background:#dcfce7; }
+
+.blk-body { padding:12px; }
+.box-dashed { border:2px dashed #e5e7eb; border-radius:8px; height:64px; display:grid; place-items:center; color:#6b7280; }
+.empty { display:flex; flex-direction:column; gap:8px; }
+.link { background:none; border:none; padding:0; color:#111827; font-weight:600; cursor:pointer; text-align:left; }
+
+.new-sprint { margin:10px 0 16px; display:flex; flex-direction:column; gap:8px; }
+.new-sprint input, .new-sprint select { border:1px solid #d1d5db; border-radius:6px; padding:6px 8px; }
+.dates { display:flex; gap:8px; flex-wrap:wrap; }
+.actions { display:flex; gap:8px; }
+
+.sprints { display:flex; flex-direction:column; gap:10px; }
+.sprint { border:1px solid #e5e7eb; border-radius:8px; padding:10px; background:#fff; }
+.row { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+.name { display:flex; align-items:center; gap:8px; }
+.chip { font-size:12px; padding:2px 8px; border-radius:999px; border:1px solid #e5e7eb; }
+.chip.ns { background:#f3f4f6; }
+.chip.ip { background:#e0e7ff; }
+.chip.ok { background:#dcfce7; }
+.chip.ko { background:#fee2e2; }
+.btn { height:32px; padding:0 10px; border-radius:8px; border:1px solid #e5e7eb; background:#fff; cursor:pointer; }
+.btn.ghost { background:#fff; }
+.btn.primary { background:#7c3aed; border-color:#7c3aed; color:#fff; }
+.btn.danger { background:#ef4444; border-color:#ef4444; color:#fff; }
+.err { color:#b91c1c; margin-top:8px; }

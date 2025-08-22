@@ -1,0 +1,60 @@
+.pw-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.pw-title {
+  margin: 0;
+  font-size: 20px;
+  color: #111827;
+}
+
+.pw-tabs {
+  display: flex;
+  gap: 12px;
+}
+
+.pw-tabs button {
+  border: none;
+  background: transparent;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: #6b7280;
+  border-bottom: 2px solid transparent;
+}
+
+.pw-tabs button.active {
+  color: #111827;
+  border-color: #7c3aed;
+  font-weight: 600;
+}
+
+.pw-body {
+  padding-top: 8px;
+}
+
+.kanban-placeholder {
+  height: 260px;
+  background: #fff;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: #6b7280;
+  margin-top: 20px;
+}
+
+.muted {
+  color: #6b7280;
+}
+
+.af-crumb {
+  margin-bottom: 12px;
+  color: #6b7280;
+}
+
+.af-crumb strong {
+  color: #111827;
+}

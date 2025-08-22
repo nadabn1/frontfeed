@@ -1,16 +1,42 @@
-<div class="admin-container">
-  <header class="hero-section">
-    <div class="hero-content">
-      <h1 class="logo-title">AGILEFEEDBACK</h1>
-      <h1>Manage Your Agile Projects<br />Like a Pro</h1>
-      <p>
-        Complete Scrum management solution with sprint planning,<br />
-        kanban boards, and team collaboration tools.
-      </p>
+<div class="af-container">
+  <aside class="af-sidebar">
+    <div class="af-sidebar-top">
+      <div class="af-workspace-name">
+        <div class="af-circle">C</div>
+        <div>
+          <div class="af-title">Agilefeedback</div>
+          <div class="af-status">☁️ Syncing up</div>
+        </div>
+      </div>
+
+      <div class="af-workspace-menu">
+        <div class="af-section-label">Workspace</div>
+        <div class="af-menu-item">📁 Projects</div>
+
+        <app-projet
+          #projetComponent
+          [projets]="projets"
+          (projetCreated)="handleProjetCreated($event)"
+          (projetDeleted)="handleProjetDeleted($event)">
+        </app-projet>
+      </div>
     </div>
+
+    <div class="af-sidebar-bottom">
+      <div class="af-menu-item">⚙️ Settings</div>
+      <div class="af-menu-item">❓ Help & support</div>
+    </div>
+  </aside>
+<!-- CONTENU CENTRAL -->
+<main class="af-main">
+  <header class="af-header">
+    <input type="text" placeholder="Search projects..." class="af-search" />
+    <button class="af-btn" (click)="toggleModal()">＋ New project</button>
   </header>
 
-  <main class="main-content">
-    <app-projet></app-projet>
-  </main>
+  <div class="af-content">
+    <router-outlet></router-outlet> <!-- ✅ c’est ici que ProjetWorkspace s'affiche -->
+  </div>
+</main>
+
 </div>

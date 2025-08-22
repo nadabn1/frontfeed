@@ -1,40 +1,50 @@
-<div class="projet-container">
-  <div class="header">
-    <h2>Projects</h2>
-    <p>Manage all your development projects</p>
-    <button class="add-btn" (click)="toggleForm()">+ New Project</button>
-  </div>
+<!-- src/app/components/projet/projet.component.html -->
+<!-- Modal création -->
+<div class="af-modal" *ngIf="showForm">
+  <div class="af-modal-content">
+    <h3>New project</h3>
 
-  <div *ngIf="showForm" class="modal">
-    <div class="modal-content">
-      <h3>Create New Project</h3>
+    <label>
+      <div>Name</div>
+      <input type="text" [(ngModel)]="form.nom" placeholder="Project name" />
+    </label>
 
-      <label>Project Name</label>
-      <input [(ngModel)]="projet.name" placeholder="Enter project name" />
+    <label>
+      <div>Description</div>
+      <textarea [(ngModel)]="form.description" rows="3"></textarea>
+    </label>
 
-      <label>Description</label>
-      <textarea [(ngModel)]="projet.description" placeholder="Project description"></textarea>
-
-      <label>Project Type</label>
-      <select [(ngModel)]="projet.type">
+    <label>
+      <div>Type</div>
+      <select [(ngModel)]="form.type">
         <option>Web Application</option>
         <option>Mobile Application</option>
-        <option>API</option>
-        <option>Other</option>
+        <option>Backend Service</option>
+        <option>Data/AI</option>
       </select>
+    </label>
 
-      <div class="modal-actions">
-        <button class="cancel" (click)="toggleForm()">Cancel</button>
-        <button class="submit" (click)="createProjet()">Create Project</button>
-      </div>
+    <div class="af-modal-actions">
+      <button class="af-btn cancel" (click)="toggleForm()">Cancel</button>
+      <button class="af-btn" (click)="createProjet()">Create</button>
     </div>
   </div>
+</div>
 
-  <div class="project-list">
-    <div *ngFor="let p of projets" class="projet-card">
-      <strong>{{ p.name }}</strong><br />
-      <small>{{ p.description }}</small><br />
-      <em>{{ p.type }}</em>
-    </div>
-  </div>
+<!-- Liste projets -->
+<div class="project-list af-scroll">
+  <a
+    *ngFor="let p of projets; trackBy: trackById"
+    class="af-menu-item project-item"
+    [routerLink]="['/admin/projets', p.id]"
+    routerLinkActive="active"
+  >
+    <span>📌 {{ p.nom }}</span>
+    <button
+      type="button"
+      class="x"
+      aria-label="Delete project"
+      (click)="onDeleteClick(p.id, $event)"
+    >❌</button>
+  </a>
 </div>

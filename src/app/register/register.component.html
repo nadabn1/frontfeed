@@ -1,12 +1,24 @@
-<form (ngSubmit)="onSubmit()">
-  <input type="email" [(ngModel)]="user.email" name="email" placeholder="Email" required />
-  <input type="password" [(ngModel)]="user.password" name="password" placeholder="Mot de passe" required />
+<div class="auth-container">
+  <form (ngSubmit)="onSubmit()">
+    <div class="logo">AgileFeedBack</div>
+    <div class="title">Créer un compte</div>
+    <div class="subtitle">
+      Vous avez déjà un compte ?
+      <a (click)="goToLogin()">Se connecter</a>
+    </div>
 
-  <select [(ngModel)]="user.role" name="role" required>
-    <option value="PO">PO</option>
-    <option value="SM">SM</option>
-    <option value="DEV">DEV</option>
-  </select>
+    <input type="email" [(ngModel)]="user.email" name="email" placeholder="Email" required />
+    <input type="password" [(ngModel)]="user.password" name="password" placeholder="Mot de passe" required />
 
-  <button type="submit">Créer mon compte</button>
-</form>
+    <select [(ngModel)]="user.role" name="role" required>
+      <option value="" disabled selected hidden>Choisir un rôle</option>
+      <option value="PO">PO</option>
+      <option value="SM">SM</option>
+      <option value="DEV">DEV</option>
+    </select>
+
+    <button type="submit">Créer mon compte</button>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </form>
+</div>
